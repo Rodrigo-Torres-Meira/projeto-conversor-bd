@@ -1,6 +1,6 @@
-package com.linhares.projetoconversor.service;
+package com.linhares.service;
 
-import com.linhares.projetoconversor.entities.User;
+import com.linhares.entities.User;
 
 import java.util.Optional;
 

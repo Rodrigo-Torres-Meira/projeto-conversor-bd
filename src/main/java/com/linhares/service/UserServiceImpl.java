@@ -1,7 +1,7 @@
-package com.linhares.projetoconversor.service;
+package com.linhares.service;
 
-import com.linhares.projetoconversor.entities.User;
-import com.linhares.projetoconversor.repository.UserRepository;
+import com.linhares.entities.User;
+import com.linhares.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

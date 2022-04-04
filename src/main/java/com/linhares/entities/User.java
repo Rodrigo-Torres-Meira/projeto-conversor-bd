@@ -1,6 +1,10 @@
-package com.linhares.projetoconversor.entities;
+package com.linhares.entities;
 
-import jakarta.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario")

@@ -1,7 +1,7 @@
-package com.linhares.projetoconversor.controllers;
+package com.linhares.controllers;
 
-import com.linhares.projetoconversor.entities.User;
-import com.linhares.projetoconversor.service.UserService;
+import com.linhares.entities.User;
+import com.linhares.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

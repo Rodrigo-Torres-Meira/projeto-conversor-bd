@@ -1,6 +1,6 @@
-package com.linhares.projetoconversor.repository;
+package com.linhares.repository;
 
-import com.linhares.projetoconversor.entities.User;
+import com.linhares.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

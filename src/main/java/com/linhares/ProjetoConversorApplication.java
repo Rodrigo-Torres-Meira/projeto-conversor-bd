@@ -1,4 +1,4 @@
-package com.linhares.projetoconversor;
+package com.linhares;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
