@@ -47,9 +47,9 @@ public class UserController {
             if (Objects.equals(user.getSenha(), senha)) {
                 return new ResponseEntity<>(true, HttpStatus.OK);
             }
-            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(userOptional, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping(value = "get_users/")
