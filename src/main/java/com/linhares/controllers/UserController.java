@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @PostMapping(value = "/user")
     public ResponseEntity<?> createUser(@RequestParam String name, @RequestParam String senha) {
 
         User user = new User(name, senha);
@@ -27,7 +27,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "userDelete/{name}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "userDelete/{name}")
     public ResponseEntity<?> removeStudent(@PathVariable ("name") String name){
 
         Optional<User> toBeDeletedStudent = userService.getUserByName(name);
@@ -38,7 +38,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(value = "test_pwd/", method = RequestMethod.POST)
+    @PostMapping(value = "test_pwd/")
     public ResponseEntity<?> testPwd(@RequestParam String name, @RequestParam String senha){
 
         Optional<User> userOptional = userService.getUserByName(name);
@@ -50,6 +50,13 @@ public class UserController {
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(userOptional, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping(value = "get_users/")
+    public ResponseEntity<?> get_users(){
+
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+
     }
 }
 
