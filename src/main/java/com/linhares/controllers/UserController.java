@@ -38,7 +38,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping(value = "test_pwd/")
+    @GetMapping(value = "test_pwd/")
     public ResponseEntity<?> testPwd(@RequestParam String name, @RequestParam String senha){
 
         Optional<User> userOptional = userService.getUserByName(name);
