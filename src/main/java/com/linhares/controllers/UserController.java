@@ -58,5 +58,12 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
 
     }
+
+    @GetMapping(value = "wake_up/")
+    public ResponseEntity<?> wake_up(){
+
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
 }
 
