@@ -15,13 +15,19 @@ public class User {
 
     private String senha;
 
-    public User(String name, String senha) {
-        this.name = name;
-        this.senha = senha;
-    }
+    private String seed;
+
+    private int iterations;
 
     public User() {
 
+    }
+
+    public User(String name, String senha, String seed, int iterations) {
+        this.name = name;
+        this.senha = senha;
+        this.seed = seed;
+        this.iterations = iterations;
     }
 
     public String getName() {
@@ -38,5 +44,21 @@ public class User {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getSeed() {
+        return seed;
+    }
+
+    public void setSeed(String seed) {
+        this.seed = seed;
+    }
+
+    public int getIterations() {
+        return iterations;
+    }
+
+    public void setIterations(int iterations) {
+        this.iterations = iterations;
     }
 }

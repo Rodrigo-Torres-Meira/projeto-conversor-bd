@@ -1,5 +1,6 @@
 package com.linhares.controllers;
 
+import com.linhares.DTOs.VerificationDTO;
 import com.linhares.entities.User;
 import com.linhares.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,15 @@ import java.util.Optional;
 @CrossOrigin
 public class UserController {
 
+    final int ITERATIONS = 500000;
+
     @Autowired
     UserService userService;
 
     @PostMapping(value = "/user")
-    public ResponseEntity<?> createUser(@RequestParam String name, @RequestParam String senha) {
+    public ResponseEntity<?> createUser(@RequestParam String name, @RequestParam String senha, @RequestParam String seed) {
 
-        User user = new User(name, senha);
+        User user = new User(name, senha, seed, ITERATIONS);
 
         userService.saveUser(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
@@ -48,6 +51,18 @@ public class UserController {
                 return new ResponseEntity<>(true, HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping(value = "get_seed/")
+    public ResponseEntity<?> getSaltIterations(@RequestParam String name) {
+        Optional<User> userOptional = userService.getUserByName(name);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            String seed = user.getSeed();
+            int iterations = user.getIterations();
+            return new ResponseEntity<>(new VerificationDTO(seed, iterations), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
