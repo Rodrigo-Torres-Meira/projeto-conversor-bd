@@ -16,15 +16,13 @@ import java.util.Optional;
 @CrossOrigin
 public class UserController {
 
-    final int ITERATIONS = 500000;
-
     @Autowired
     UserService userService;
 
     @PostMapping(value = "/user")
-    public ResponseEntity<?> createUser(@RequestParam String name, @RequestParam String senha, @RequestParam String seed) {
+    public ResponseEntity<?> createUser(@RequestParam String name, @RequestParam String senha, @RequestParam String seed, @RequestParam int iterations) {
 
-        User user = new User(name, senha, seed, ITERATIONS);
+        User user = new User(name, senha, seed, iterations);
 
         userService.saveUser(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
