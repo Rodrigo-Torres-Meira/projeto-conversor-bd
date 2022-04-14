@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -40,13 +41,19 @@ public class UserController {
     }
 
     @GetMapping(value = "test_pwd/")
-    public ResponseEntity<?> testPwd(@RequestParam String name, @RequestParam String senha){
+    public ResponseEntity<?> testPwd(@RequestParam String name, @RequestParam String senha, @RequestParam String hostname, @RequestParam String ip_addres){
 
         Optional<User> userOptional = userService.getUserByName(name);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
+            user.addLog("Tentativa de Login em: " + LocalDateTime.now());
+            userService.saveUser(user);
             if (Objects.equals(user.getSenha(), senha)) {
-                return new ResponseEntity<>(true, HttpStatus.OK);
+                user.addLog("Login realizado em: " + LocalDateTime.now() + "\nPor:" +
+                        "\nHostname: " + hostname +
+                        "\nIP Address: " + ip_addres);
+                userService.saveUser(user);
+                return new ResponseEntity<>(HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

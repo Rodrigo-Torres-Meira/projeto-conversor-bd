@@ -1,10 +1,9 @@
 package com.linhares.entities;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -18,6 +17,9 @@ public class User {
     private String seed;
 
     private int iterations;
+
+    @ElementCollection
+    private final List<String> logs = new ArrayList<>();
 
     public User() {
 
@@ -60,5 +62,16 @@ public class User {
 
     public void setIterations(int iterations) {
         this.iterations = iterations;
+    }
+
+    public List<String> getLogs() {
+        return logs;
+    }
+
+    public void addLog(String log) {
+        if (logs.size() > 99) {
+            logs.remove(0);
+        }
+        this.logs.add(log);
     }
 }
